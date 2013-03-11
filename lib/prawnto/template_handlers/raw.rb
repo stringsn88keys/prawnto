@@ -1,8 +1,8 @@
 module Prawnto
   module TemplateHandlers
     class Raw < Base
-      
-      def compile(template)
+
+      def self.call(template)
         #TODO: what's up with filename here?  not used is it?
         source,filename = massage_template_source(template)
         "_prawnto_compile_setup;" +
@@ -38,7 +38,7 @@ module Prawnto
         source = template.source.dup
         variable_name = '_pdf'
         filename = nil
-        
+
         source.gsub! /^(\s*?)(\$LOAD_PATH)/, '\1#\2'
         source.gsub! /^(\s*?)(require\(?\s*['"]rubygems['"]\s*\)?\s*)$/, '\1#\2'
         source.gsub! /^(\s*?)(require\(?\s*['"]prawn['"]\s*\)?\s*)$/, '\1#\2'
